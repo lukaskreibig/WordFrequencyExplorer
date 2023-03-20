@@ -64,7 +64,6 @@ export const broadcastWordCountMap = (wss: Server, wordCountMap: Record<string, 
 /**
  * Fetch blog posts periodically and send the word count map to WebSocket clients
  * only if the data has changed since the last fetch.
- *
  * @param {Server} wss - The WebSocket server.
  */
 
@@ -76,11 +75,25 @@ export const fetchBlogPostsPeriodically = (wss: Server) => {
     const wordCountMap = createWordCountMap(blogPosts);
 
     if (!isEqual(previousWordCountMap, wordCountMap)) {
-      console.log("not equal, new data will be sent")
+      console.log("global update - new data recieved")
       broadcastWordCountMap(wss, wordCountMap);
       previousWordCountMap = wordCountMap;
-    } else {console.log("equal data - no update will be sent")} 
+    } else {console.log("no global update - same data as before")} 
   };
+
+  wss.on("connection", (ws) => {
+    console.log("Send the lastWordCountMap to Client");
+
+    // Send the lastWordCountMap to the newly connected client
+    if (Object.keys(previousWordCountMap).length > 0) {
+      ws.send(JSON.stringify(previousWordCountMap));
+    }
+
+    ws.on("close", () => {
+      console.log("Client disconnected");
+    });
+  });
+
 
   processBlogPosts();
   setInterval(processBlogPosts, 10000);

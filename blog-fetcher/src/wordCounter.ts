@@ -1,8 +1,22 @@
 import sanitizeHtml from 'sanitize-html';
 
+/**
+ * Cleans up the Punctuation and Special Characters in each word.
+ *
+ * @param {string} input - The wordpress object containing the blogpost.
+ * @returns {Record<string, number>} returns the words counted.
+ */
+
 const removePunctuation = (word: string): string => {
   return word.replace(/^[^a-zA-ZäöüÄÖÜß\w]+|[^a-zA-ZäöüÄÖÜß\w]+$/g, '')
 };
+
+/**
+ * Cleans up the HTML from Wordpress with sanitizeHTML and iterates through all words.
+ *
+ * @param {string} input - The wordpress object containing the blogpost.
+ * @returns {Record<string, number>} returns the words counted.
+ */
 
 const countWords = (input: string): Record<string, number> => {
   const sanitizedText = sanitizeHtml(input, { allowedTags: [], allowedAttributes: {} });
@@ -18,6 +32,13 @@ const countWords = (input: string): Record<string, number> => {
 
   return wordCount;
 };
+
+/**
+ * Cleans up the HTML from Wordpress with sanitizeHTML and iterates through all words.
+ *
+ * @param {any[]} blogPosts - The array of Blogposts.
+ * @returns {Record<string, number>} returns the wordCountMap.
+ */
 
 export const createWordCountMap = (blogPosts: any[]): Record<string, number> => {
   const wordCountMap: Record<string, number> = {};

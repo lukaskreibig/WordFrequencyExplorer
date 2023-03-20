@@ -70,4 +70,4 @@ The microservices used are two separate components that work together to fetch, 
 The purpose of this microservice is to periodically fetch blog posts from a specified API endpoint, count the word frequency in the blog posts, and then store the word frequency data in a Redis cache.
 
 #### WebSocket Microservice: 
-The purpose of this microservice is to serve as a WebSocket server that listens for incoming connections from clients (such as a frontend application). When a client connects, the server sends the latest word frequency data from the Redis cache to the client.
+The purpose of this microservice is to serve as a WebSocket server that listens for incoming connections from clients (such as a frontend application). When a client connects, the server sends the latest word frequency data from the Redis cache to the client. The server also periodically checks for updates in the Redis cache and sends the updated data to the connected clients if the word frequency data has changed.

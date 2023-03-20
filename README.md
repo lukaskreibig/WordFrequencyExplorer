@@ -62,3 +62,10 @@ To run the frontend test suite, navigate into the frontend directory and run the
 cd frontend
 npm test
 ```
+
+### Backend
+The microservices used are two separate components that work together to fetch, process, and display the word frequency data from blog posts. Here's an overview of their individual roles and how they interact with each other:
+
+# Blog Fetcher Microservice: The purpose of this microservice is to periodically fetch blog posts from a specified API endpoint, count the word frequency in the blog posts, and then store the word frequency data in a Redis cache.
+
+# WebSocket Microservice: The purpose of this microservice is to serve as a WebSocket server that listens for incoming connections from clients (such as a frontend application). When a client connects, the server sends the latest word frequency data from the Redis cache to the client.

@@ -31,7 +31,7 @@ git clone https://github.com/lukaskreibig/WordFrequencyExplorer.git
 2. Navigate to the project directory:
 
 ```bash
-cd word-count-explorer
+cd WordFrequencyExplorer
 ```
 
 3. Install the dependencies for both the frontend and backend:

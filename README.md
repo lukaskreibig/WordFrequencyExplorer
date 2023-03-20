@@ -67,6 +67,14 @@ To stop the application, press `CTRL + C` in the terminal where the `docker-comp
 ```bash
 docker-compose down
 ```
+### Testing
+
+For testing purposes navigate into the frontend directory and run the testing command:
+
+```bash
+cd frontend
+npm test
+```
 
 ## Directory Structure
 

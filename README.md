@@ -1,6 +1,6 @@
-# Word Count Explorer
+# Word Frequency Explorer
 
-Word Count Explorer is a simple web application that allows users to see the usage of a word and view the word count for each word in the text. The application is split into a microservice backend and a frontend, and uses Docker Compose to run both in a local development environment.
+Word Frequency Explorer is a simple web application that allows users to see the usage of a word and view the word count for each word in the text. The application is split into a microservice backend and a frontend, and uses Docker Compose to run both in a local development environment.
 
 ## Technologies Used
 

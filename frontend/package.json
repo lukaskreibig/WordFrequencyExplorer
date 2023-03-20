@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "ts-jest",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "browserslist": {

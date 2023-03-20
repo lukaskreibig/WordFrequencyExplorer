@@ -75,10 +75,3 @@ To run the frontend test suite, navigate into the frontend directory and run the
 cd frontend
 npm test
 ```
-
-## Directory Structure
-
-The project directory is structured as follows:
-
-The `backend` directory contains the Node.js backend code, while the `frontend` directory contains the React frontend code. The `docker-compose.yml` file defines the Docker Compose services, and the `README.md` file contains the documentation for the project.
-

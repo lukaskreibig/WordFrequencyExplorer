@@ -53,9 +53,7 @@ export const fetchBlogPostsPeriodically = (wss: Server) => {
       broadcastWordCountMap(wss, wordCountMap);
       await redisClient.set("wordCountMap", JSON.stringify(wordCountMap));
       previousWordCountMap = wordCountMap;
-    } else {
-      console.log("no global update - same data as before")
-    }
+    } 
   };
 
   wss.on("connection", async (ws) => {

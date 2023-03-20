@@ -21,7 +21,7 @@ interface WordCountData {
  */
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 100, flex: 1,},
-  { field: 'word', headerName: 'Word', width: 150, flex: 2 },
+  { field: 'word', headerName: 'Word', width: 150, flex: 1 },
   { field: 'count', headerName: 'Count', width: 150, flex: 0 },
 ];
 
@@ -29,10 +29,8 @@ const columns: GridColDef[] = [
  * WordCountGrid React component to display the word count data in a DataGrid.
  * Connects to the WebSocket server and updates the DataGrid based on received messages.
  *
- * @component
- * @example
- * <WordCountGrid />
  */
+
 export const WordCountGrid: React.FC = () => {
   const [rows, setRows] = useState<GridRowsProp>([]);
 
@@ -59,8 +57,12 @@ export const WordCountGrid: React.FC = () => {
   }, []);
 
   return (
-    <Box height={"80vh"} width={"100%"}>
-      <DataGrid rows={rows} columns={columns} autoPageSize autoHeight loading={!rows.length}/>
+    <Box height={"81vh"} width={"100%"}>
+      <DataGrid rows={rows} columns={columns} rowSelection={false} autoPageSize loading={!rows.length} initialState={{
+        sorting: {
+          sortModel: [{ field: 'count', sort: 'desc' }],
+        },
+      }}/>
     </Box>
   );
 };

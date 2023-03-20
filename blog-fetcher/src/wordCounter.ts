@@ -1,4 +1,3 @@
-// wordCounter.ts
 import sanitizeHtml from 'sanitize-html';
 
 const removePunctuation = (word: string): string => {

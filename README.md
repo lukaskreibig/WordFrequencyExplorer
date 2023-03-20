@@ -24,27 +24,36 @@ Before you can run the application, you must have the following installed:
 
 1. Clone the repository:
 
+```bash
 git clone [https://github.com/lukaskreibig/word-count-explorer.git](https://github.com/lukaskreibig/WordFrequencyExplorer.git)
-
+```
 
 2. Navigate to the project directory:
 
+```bash
 cd word-count-explorer
+```
 
 3. Install the dependencies for both the frontend and backend:
 
+
+```bash
 cd frontend
 npm install
+```
 
+```bash
 cd ../backend
 npm install
-
+```
 
 ### Usage
 
 To start the application, run the following command:
 
+```bash
 docker-compose up
+```
 
 
 This will start the frontend and backend containers, as well as a container running the WebSocket server.
@@ -55,8 +64,9 @@ Once the containers are running, you can access the application by navigating to
 
 To stop the application, press `CTRL + C` in the terminal where the `docker-compose` command is running. Then, run the following command to stop and remove the containers:
 
+```bash
 docker-compose down
-
+```
 
 ## Directory Structure
 

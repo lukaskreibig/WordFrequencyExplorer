@@ -5,8 +5,8 @@ Word Frequency Explorer is a simple web application that allows users to see the
 ## Technologies Used
 
 - React for the frontend
-- Microservice Backend using Node.js with Express 
-- WebSocket for real-time communication and Redis for memory management between the frontend and backend
+- Microservice Backend using Node.js with Express and Redis for memory management
+- WebSocket for real-time communication between the frontend and backend
 - Docker Compose for running the application in a local development environment
 
 ## Getting Started

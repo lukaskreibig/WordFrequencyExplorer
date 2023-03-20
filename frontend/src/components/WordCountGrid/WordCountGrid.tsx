@@ -35,7 +35,7 @@ export const WordCountGrid: React.FC = () => {
   const [rows, setRows] = useState<GridRowsProp>([]);
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8082'); 
+    const ws = new WebSocket('ws://localhost:8080'); 
 
     ws.addEventListener('message', (event) => {
       console.log("event", event)

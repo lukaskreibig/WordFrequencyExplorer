@@ -1,16 +1,17 @@
 import axios from "axios";
 import { Server } from "ws";
 import WebSocket from "ws";
-import { createWordCountMap } from "./wordCounter";
+import { createWordFrequencyMap } from "./wordCounter";
 import redisClient from "./redisClient";
+import { BlogPost } from "./wordCounter";
 
 /**
  * Fetch blog posts from the specified API endpoint.
  *
- * @returns {Promise<any[]>} A promise that resolves to an array of blog posts.
+ * @returns {Promise<BlogPost[]>} A promise that resolves to an array of blog posts.
  */
 
-export const fetchBlogPosts = async () => {
+export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     const response = await axios.get(
       "https://www.thekey.academy/wp-json/wp/v2/posts"
@@ -75,7 +76,7 @@ export const fetchBlogPostsPeriodically = (wss: Server) => {
 
   const processBlogPosts = async () => {
     const blogPosts = await fetchBlogPosts();
-    const wordCountMap = createWordCountMap(blogPosts);
+    const wordCountMap = createWordFrequencyMap(blogPosts);
 
     if (!isEqual(previousWordCountMap, wordCountMap)) {
       console.log("global update - new data recieved")

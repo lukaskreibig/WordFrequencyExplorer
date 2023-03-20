@@ -1,25 +1,31 @@
 import sanitizeHtml from 'sanitize-html';
 
+export interface BlogPost {
+  content: {
+    rendered: string;
+  };
+}
+
 /**
- * Cleans up the Punctuation and Special Characters in each word.
+ * Removes punctuation and special characters from the given word.
  *
- * @param {string} word - The Word from a BlogPost.
- * @returns {string} returns the words cleaned up.
+ * @param {string} word - The word to be cleaned.
+ * @returns {string} The cleaned word.
  */
 
 const removePunctuation = (word: string): string => {
-  return word.replace(/^[^a-zA-ZäöüÄÖÜß\w]+|[^a-zA-ZäöüÄÖÜß\w]+$/g, '')
+  return word.replace(/^[^a-zA-ZäöüÄÖÜß\w]+|[^a-zA-ZäöüÄÖÜß\w]+$/g, '');
 };
 
 /**
- * Cleans up the HTML from Wordpress with sanitizeHTML and iterates through all words.
+ * Cleans HTML from a Wordpress blog post using sanitizeHTML, and counts occurrences of each word.
  *
- * @param {string} input - The wordpress object containing the blogpost.
- * @returns {Record<string, number>} Returns the words counted.
+ * @param {string} sanitizedInput - The raw Wordpress blog post content.
+ * @returns {Record<string, number>} A map of words and their counts.
  */
 
-const countWords = (input: string): Record<string, number> => {
-  const sanitizedText = sanitizeHtml(input, { allowedTags: [], allowedAttributes: {} });
+const countWords = (sanitizedInput: string): Record<string, number> => {
+  const sanitizedText = sanitizeHtml(sanitizedInput, { allowedTags: [], allowedAttributes: {} });
   const words = sanitizedText.split(/[^a-zA-ZäöüÄÖÜß\w]+/);
   const wordCount: Record<string, number> = {};
 
@@ -34,21 +40,21 @@ const countWords = (input: string): Record<string, number> => {
 };
 
 /**
- * Uses the BlogPosts to start the Clean Up and Iteration Process.
+ * Processes an array of blog posts, counting word occurrences in each post.
  *
- * @param {any[]} blogPosts - The array of BlogPosts.
- * @returns {Record<string, number>} Returns the wordCountMap.
+ * @param {BlogPost[]} blogPosts - An array of blog posts.
+ * @returns {Record<string, number>} A map of words and their total counts across all blog posts.
  */
 
-export const createWordCountMap = (blogPosts: any[]): Record<string, number> => {
-  const wordCountMap: Record<string, number> = {};
+export const createWordFrequencyMap = (blogPosts: BlogPost[]): Record<string, number> => {
+  const wordFrequencyMap: Record<string, number> = {};
 
   blogPosts.forEach((post) => {
     const wordCounts = countWords(post.content.rendered);
     for (const [word, count] of Object.entries(wordCounts)) {
-      wordCountMap[word] = (wordCountMap[word] || 0) + count;
+      wordFrequencyMap[word] = (wordFrequencyMap[word] || 0) + count;
     }
   });
 
-  return wordCountMap;
+  return wordFrequencyMap;
 };

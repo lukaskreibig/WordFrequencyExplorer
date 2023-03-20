@@ -1,27 +1,39 @@
+import http from "http";
+import WebSocket, { Server } from "ws";
 import express from "express";
-import { createWebSocketServer } from "./webSocket";
-import axios from "axios";
+import redisClient from "./redisClient";
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const server = http.createServer(app);
+const wss = new Server({ server });
 
-const server = app.listen(PORT, () => {
-  console.log(`Web Socket microservice is running on port ${PORT}`);
-});
+const fetchWordCountMap = async () => {
+  const wordCountMap = await redisClient.get("wordCountMap");
+  return wordCountMap ? JSON.parse(wordCountMap) : null;
+};
 
-const wss = createWebSocketServer(server);
+wss.on("connection", async (ws) => {
+  console.log("Client connected");
 
-app.get("/word-count", async (req, res) => {
-  try {
-    const response = await axios.get("http://word-counter:8081/word-count");
-    res.send(response.data);
-  } catch (error) {
-    res.status(500).send({ message: "Failed to fetch word count" });
+  const wordCountMap = await fetchWordCountMap();
+  if (wordCountMap) {
+    ws.send(JSON.stringify(wordCountMap));
   }
+
+  ws.on("close", () => {
+    console.log("Client disconnected");
+  });
 });
 
-wss.on("connection", (ws) => {
-  ws.on("message", (message) => {
-    ws.send(message);
+server.listen(process.env.PORT || 3001, () => {
+  console.log(`Server started`);
+});
+
+// Gracefully shut down on SIGINT signal (Ctrl + C)
+process.on("SIGINT", () => {
+  console.log("Shutting down server...");
+  redisClient.disconnect();
+  server.close(() => {
+    process.exit(0);
   });
 });

@@ -69,7 +69,7 @@ docker-compose down
 ```
 ### Testing
 
-For testing purposes navigate into the frontend directory and run the testing command:
+To run the frontend test suite, navigate into the frontend directory and run the testing command:
 
 ```bash
 cd frontend

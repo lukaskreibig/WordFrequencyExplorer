@@ -62,22 +62,5 @@ docker-compose down
 
 The project directory is structured as follows:
 
-.
-├── backend
-│ ├── Dockerfile
-│ ├── package.json
-│ ├── package-lock.json
-│ ├── src
-│ └── tsconfig.json
-├── docker-compose.yml
-├── frontend
-│ ├── Dockerfile
-│ ├── package.json
-│ ├── package-lock.json
-│ ├── public
-│ └── src
-└── README.md
-
-
 The `backend` directory contains the Node.js backend code, while the `frontend` directory contains the React frontend code. The `docker-compose.yml` file defines the Docker Compose services, and the `README.md` file contains the documentation for the project.
 

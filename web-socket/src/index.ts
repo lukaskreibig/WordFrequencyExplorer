@@ -1,5 +1,5 @@
 import http from "http";
-import WebSocket, { Server } from "ws";
+import { Server } from "ws";
 import express from "express";
 import redisClient from "./redisClient";
 

@@ -34,19 +34,6 @@ git clone https://github.com/lukaskreibig/WordFrequencyExplorer.git
 cd WordFrequencyExplorer
 ```
 
-3. Install the dependencies for both the frontend and backend:
-
-
-```bash
-cd frontend
-npm install
-```
-
-```bash
-cd ../backend
-npm install
-```
-
 ### Usage
 
 To start the application, run the following command:

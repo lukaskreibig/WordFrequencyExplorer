@@ -60,7 +60,7 @@ export const WordCountGrid: React.FC = () => {
 
   return (
     <Box height={"80vh"} width={"100%"}>
-      <DataGrid  rows={rows} columns={columns}  />
+      <DataGrid rows={rows} columns={columns} autoPageSize autoHeight loading={!rows.length}/>
     </Box>
   );
 };

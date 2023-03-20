@@ -1,39 +1,30 @@
 import http from "http";
-import { Server } from "ws";
+import { Server, WebSocket } from "ws";
 import express from "express";
 import redisClient from "./redisClient";
+import { sendDataOnChange } from "./wordCountMapHandler";
 
 const app = express();
 const server = http.createServer(app);
 const wss = new Server({ server });
 
-const fetchWordCountMap = async () => {
-  const wordCountMap = await redisClient.get("wordCountMap");
-  return wordCountMap ? JSON.parse(wordCountMap) : null;
-};
-
-wss.on("connection", async (ws) => {
+wss.on("connection", (ws) => {
   console.log("Client connected");
-
-  const wordCountMap = await fetchWordCountMap();
-  if (wordCountMap) {
-    ws.send(JSON.stringify(wordCountMap));
-  }
+  sendDataOnChange(ws);
 
   ws.on("close", () => {
     console.log("Client disconnected");
   });
 });
 
-server.listen(process.env.PORT || 3001, () => {
+server.listen(process.env.PORT || 8080, () => {
   console.log(`Server started`);
-});
 
-// Gracefully shut down on SIGINT signal (Ctrl + C)
-process.on("SIGINT", () => {
-  console.log("Shutting down server...");
-  redisClient.disconnect();
-  server.close(() => {
-    process.exit(0);
+  process.on("SIGINT", () => {
+    console.log("Shutting down server...");
+    redisClient.disconnect();
+    server.close(() => {
+      process.exit(0);
+    });
   });
 });

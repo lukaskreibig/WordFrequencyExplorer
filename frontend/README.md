@@ -1,43 +1,83 @@
-# Material UI - Create React App example in TypeScript
+# Word Count Explorer
 
-## How to use
+Word Count Explorer is a simple web application that allows users to see the usage of a word and view the word count for each word in the text. The application is split into a microservice backend and a frontend, and uses Docker Compose to run both in a local development environment.
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+## Technologies Used
 
-<!-- #default-branch-switch -->
+- React for the frontend
+- Node.js with Express for the microservice backend
+- WebSocket for real-time communication between the frontend and backend
+- Docker Compose for running the application in a local development environment
 
-```sh
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-cra-ts
-cd material-cra-ts
-```
+## Getting Started
 
-Install it and run:
+To get started with Word Count Explorer, follow the steps below.
 
-```sh
+### Prerequisites
+
+Before you can run the application, you must have the following installed:
+
+- Docker
+- Node.js
+
+### Installation
+
+1. Clone the repository:
+
+git clone https://github.com/lukaskreibig/word-count-explorer.git -- update!! wrong
+
+
+2. Navigate to the project directory:
+
+cd word-count-explorer
+
+3. Install the dependencies for both the frontend and backend:
+
+cd frontend
 npm install
-npm start
-```
 
-or:
+cd ../backend
+npm install
 
-<!-- #default-branch-switch -->
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-cra-ts)
+### Usage
 
-<!-- #default-branch-switch -->
+To start the application, run the following command:
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-cra-ts)
+docker-compose up
 
-## The idea behind the example
 
-This example demonstrates how you can use Material UI with [Create React App](https://github.com/facebookincubator/create-react-app) in [TypeScript](https://github.com/Microsoft/TypeScript).
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
-If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
+This will start the frontend and backend containers, as well as a container running the WebSocket server.
 
-## What's next?
+Once the containers are running, you can access the application by navigating to http://localhost in your web browser.
 
-<!-- #default-branch-switch -->
+### Stopping the Application
 
-You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
-# frontend-websocket-blog
+To stop the application, press `CTRL + C` in the terminal where the `docker-compose` command is running. Then, run the following command to stop and remove the containers:
+
+docker-compose down
+
+
+## Directory Structure
+
+The project directory is structured as follows:
+
+.
+├── backend
+│ ├── Dockerfile
+│ ├── package.json
+│ ├── package-lock.json
+│ ├── src
+│ └── tsconfig.json
+├── docker-compose.yml
+├── frontend
+│ ├── Dockerfile
+│ ├── package.json
+│ ├── package-lock.json
+│ ├── public
+│ └── src
+└── README.md
+
+
+The `backend` directory contains the Node.js backend code, while the `frontend` directory contains the React frontend code. The `docker-compose.yml` file defines the Docker Compose services, and the `README.md` file contains the documentation for the project.
+

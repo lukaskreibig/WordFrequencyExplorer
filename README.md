@@ -24,7 +24,7 @@ Before you can run the application, you must have the following installed:
 
 1. Clone the repository:
 
-git clone https://github.com/lukaskreibig/word-count-explorer.git -- update!! wrong
+git clone [https://github.com/lukaskreibig/word-count-explorer.git](https://github.com/lukaskreibig/WordFrequencyExplorer.git)
 
 
 2. Navigate to the project directory:

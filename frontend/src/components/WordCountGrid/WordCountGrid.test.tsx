@@ -33,7 +33,7 @@ describe('WordCountGrid', () => {
     render(<WordCountGrid />);
 
     // Sample word count data to be sent through the WebSocket
-    const wordCountMap = { word1: 2, word2: 3 };
+    const wordCountMap = { word1: 2, word2: 3, word3: 4 };
 
     // Simulate a WebSocket message event with the sample data
     server.on('connection', (socket) => {

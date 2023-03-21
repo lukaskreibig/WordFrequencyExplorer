@@ -58,7 +58,7 @@ export const WordCountGrid: React.FC = () => {
 
   return (
     <Box height={"81vh"} width={"100%"}>
-      <DataGrid rows={rows} columns={columns} rowSelection={false} autoPageSize loading={!rows.length} initialState={{
+      <DataGrid key={rows.length} rows={rows} columns={columns} rowSelection={false} autoPageSize loading={!rows.length} initialState={{
         sorting: {
           sortModel: [{ field: 'count', sort: 'desc' }],
         },

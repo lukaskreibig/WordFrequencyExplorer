@@ -1,8 +1,8 @@
 import http from "http";
 import { Server } from "ws";
 import express from "express";
-import { sendDataOnChange } from "../wordCountMapHandler/wordCountMapHandler";
-import { redisClient } from "../redisClient/redisClient";
+import { sendDataOnChange } from "./wordCountMapHandler/wordCountMapHandler";
+import { redisClient } from "./redisClient/redisClient";
 
 const app = express();
 const server = http.createServer(app);

@@ -56,10 +56,15 @@ docker-compose down
 ```
 ### Testing
 
-To run the frontend test suite, navigate into the frontend directory and run the testing command:
+To run the testing suites, navigate into the service you want to test and run the testing command:
 
 ```bash
-cd frontend
+cd frontend 
+   - or -
+cd blog-fetcher 
+   - or - 
+cd web-socket
+   - and -
 npm test
 ```
 

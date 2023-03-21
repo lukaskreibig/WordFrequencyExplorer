@@ -1,8 +1,7 @@
 import axios from "axios";
-import { createWordFrequencyMap } from "./wordCounter";
-import redisClient from "./redisClient";
-import { BlogPost } from "./wordCounter";
-import { isEqual } from "./Utils";
+import { isEqual } from "../utils/utils";
+import redisClient from "../redisClient/redisClient";
+import { BlogPost, createWordFrequencyMap } from "../wordCounter/wordCounter";
 
 /**
  * Fetch blog posts from the specified API endpoint.
@@ -25,7 +24,7 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
  * Fetch blog posts periodically and send the word count map to Redis
  * only if the data has changed since the last fetch.
  */
-export const fetchBlogPostsPeriodically = () => {
+ export const fetchBlogPostsPeriodically = () => {
   let previousWordCountMap: Record<string, number> = {};
 
   const processBlogPosts = async () => {
@@ -40,5 +39,9 @@ export const fetchBlogPostsPeriodically = () => {
   };
 
   processBlogPosts();
-  setInterval(processBlogPosts, 10000);
+  return setInterval(processBlogPosts, 10000);
 };
+
+
+
+

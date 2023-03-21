@@ -1,4 +1,4 @@
-import redisClient from "./redisClient";
+import { redisClient } from "../redisClient/redisClient";
 import { WebSocket } from "ws";
 
 /**

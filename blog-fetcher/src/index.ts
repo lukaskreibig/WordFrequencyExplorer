@@ -1,3 +1,3 @@
+import { fetchBlogPostsPeriodically } from "./blogFetcher/blogFetcher";
 
-import { fetchBlogPostsPeriodically } from "./blogFetcher";
 fetchBlogPostsPeriodically();
